@@ -3,7 +3,7 @@ package com.example.sunnyweather.logic.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-//Retrofit构造器
+//Retrofit构造器，提供一个动态代理对象，也就是定义的Retrofit接口
 object ServiceCreator {
     private const val BASE_URL = "https://api.caiyunapp.com/"
 
