@@ -2,9 +2,12 @@ package com.example.sunnyweather.logic
 
 import androidx.lifecycle.liveData
 import com.example.sunnyweather.logic.model.Place
+import com.example.sunnyweather.logic.model.Weather
 import com.example.sunnyweather.logic.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
-import java.lang.RuntimeException
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlin.RuntimeException
 
 /**
  * 仓库层，判断调用方请求的数据应该是从本地数据源获取还是从网络数据源获取
@@ -39,6 +42,39 @@ object Repository {
          * emit()类似于调用LiveData的setValue()来通知数据变化
          * 只不过这里无法直接取得返回的LiveData对象，所以lifecycle-livedata-ktx提供了这样一个替代方法
          */
+        emit(result)
+    }
+
+
+    fun refreshWeather(lng : String,lat : String) = liveData(Dispatchers.IO) {
+        val result = try {
+            coroutineScope {
+                val deferredRealTime = async {
+                    SunnyWeatherNetwork.getRealtimeWeather(lng, lat)
+                }
+
+                val deferredDaily = async {
+                    SunnyWeatherNetwork.getDailyWeather(lng, lat)
+                }
+
+                val realtimeResponse = deferredRealTime.await()
+                val dailyResponse = deferredDaily.await()
+
+                if (realtimeResponse.status == "ok" && dailyResponse.status == "ok"){
+                    val weather = Weather(realtimeResponse.result.realTime,dailyResponse.result.daily)
+                    Result.success(weather)
+                }
+                else{
+                    Result.failure(
+                        RuntimeException("realtime response status is ${realtimeResponse.status}" +
+                                         "daily response status is ${dailyResponse.status}")
+                    )
+                }
+            }
+        }catch (e:Exception){
+            Result.failure<Weather>(e)
+        }
+
         emit(result)
     }
 }
