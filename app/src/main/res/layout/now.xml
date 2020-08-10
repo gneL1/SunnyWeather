@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/nowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="530dp">
+
+<!--上半部分是头布局，里面只放置了一个TextView，用于显示城市名-->
+    <FrameLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/placeName"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:ellipsize="middle"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+<!--  下半部分是当前天气信息的布局，里面放置了几个TextView，分别显示当前气温、
+  当前天气情况和当前空气质量-->
+    <LinearLayout
+        android:id="@+id/bodyLayout"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/currentTemp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff"
+            android:textSize="70sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/currentSky"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginStart="13dp"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:text="|"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/currentAQI"
+                android:layout_marginStart="13dp"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

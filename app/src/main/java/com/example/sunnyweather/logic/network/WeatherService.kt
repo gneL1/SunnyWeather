@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+//获取实时天气和获取未来几天天气的接口
 interface WeatherService {
     //https://api.caiyunapp.com/v2.5/dokrTleAG8peBeyw/121.6544,25.1552/realtime.json
     @GET("v2.5/${SunnyWeatherApplication.TOKEN}/{lng},{lat}/realtime.json")
