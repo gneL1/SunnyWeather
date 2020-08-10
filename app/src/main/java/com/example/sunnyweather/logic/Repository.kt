@@ -1,6 +1,7 @@
 package com.example.sunnyweather.logic
 
 import androidx.lifecycle.liveData
+import com.example.sunnyweather.logic.dao.PlaceDao
 import com.example.sunnyweather.logic.model.Place
 import com.example.sunnyweather.logic.model.Weather
 import com.example.sunnyweather.logic.network.SunnyWeatherNetwork
@@ -118,7 +119,7 @@ object Repository {
              * 最后调用emit()将包装的结果发射出去
              */
             if (realtimeResponse.status == "ok" && dailyResponse.status == "ok"){
-                val weather = Weather(realtimeResponse.result.realTime,dailyResponse.result.daily)
+                val weather = Weather(realtimeResponse.result.realtime,dailyResponse.result.daily)
                 Result.success(weather)
             }
             else{
@@ -147,5 +148,11 @@ object Repository {
             }
             emit(result)
         }
+
+    fun savePlace(place: Place) = PlaceDao.savePlace(place)
+
+    fun getSavedPlace() = PlaceDao.getSavePlace()
+
+    fun isPlaceSaved() = PlaceDao.isPlaceSaved()
 
 }

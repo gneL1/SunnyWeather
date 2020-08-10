@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+<!--  定义了一个四方格布局，分别显示感冒、穿衣、实时紫外线、洗车的指数
+        每个方格中一个ImageView显示图标，一个TextView显示标题，一个TextView显示指数-->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -95,13 +98,99 @@
                         android:id="@+id/dressingText"
                         android:layout_marginTop="4dp"
                         android:textSize="16sp"
-                        android:textColor="?android:attr/colorPrimary"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="60dp">
+
+                <ImageView
+                    android:id="@+id/ultravioletImg"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_ultraviolet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/ultravioletImg"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="实时紫外线"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/ultravioletText"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="60dp">
+
+                <ImageView
+                    android:id="@+id/carWashingImg"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_carwashing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@id/carWashingImg"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="洗车"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/carWashingText"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

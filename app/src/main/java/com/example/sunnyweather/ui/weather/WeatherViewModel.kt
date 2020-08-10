@@ -17,11 +17,11 @@ class WeatherViewModel : ViewModel(){
      * locationLng、locationLat、placeName是和界面相关的数据
      * 放到ViewModel中可以保证它们在手机屏幕发生旋转的时候不会丢失
      */
-    val locationLng = ""
+    var locationLng = ""
 
-    val locationLat = ""
+    var locationLat = ""
 
-    val placeName = ""
+    var placeName = ""
 
 
     /**

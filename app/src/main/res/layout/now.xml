@@ -8,6 +8,7 @@
 <!--上半部分是头布局，里面只放置了一个TextView，用于显示城市名-->
     <FrameLayout
         android:id="@+id/titleLayout"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
