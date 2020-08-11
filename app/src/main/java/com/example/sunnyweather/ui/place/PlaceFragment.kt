@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sunnyweather.MainActivity
 import com.example.sunnyweather.R
 import com.example.sunnyweather.ui.weather.WeatherActivity
 import com.example.sunnyweather.utils.toast
@@ -50,8 +51,14 @@ class PlaceFragment : Fragment() {
         /**
          * 在PlaceFragment中进行判断，如果当前已有存储的城市数据，就获取已存储的数据并解析成Place对象
          * 然后使用它的经纬度坐标和城市名直接跳转并传递给WeatherActivity，这样就不用每次都重新搜索并选择城市了
+         *
+         * 假若已经右选中的城市保存在SharedPreferences文件中，就直接跳转到WeatherActivity
+         * 将PlaceFragment嵌入WeatherActivity中之后，如果还执行这段逻辑会造成无限循环跳转的情况
+         * 设置activity is MainActivity  只有当PlaceFragment被嵌入MainActivity，
+         * 并且之前已经存在选中的城市，此时才会直接跳转到WeatherActivity
          */
-        if (viewModel.isPlaceSaved()){
+        if (viewModel.isPlaceSaved() && activity is MainActivity){
+            print("被创建并进行跳转");
             val place = viewModel.getSavedPlace()
             val intent = Intent(context,WeatherActivity::class.java).apply {
                 putExtra("location_lng",place.location.lng)
